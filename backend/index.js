@@ -1,22 +1,25 @@
-const fetchHTML = require('./fetchHTML');
+const dlRRAAwardsRate = require('./dlRRAAwardsRate');
+const dlRRP = require('./dlRRP');
+const waitTimer = require('./waitTimer');
 const csvToJson = require('./csvToJson');
 const mergeArrays = require('./mergeArrays');
 const sortByDate = require('./sortByDate');
 const saveDataToFile = require('./saveDataToFile');
 
 
-const rrpAwardsSource = `https://fred.stlouisfed.org/series/RRPONTSYAWARD`;
-const rrpAgreementSource = `https://fred.stlouisfed.org/series/RRPONTSYD`;
-const rrpAwardsCsv = `RRPONTSYAWARD.csv`;
-const rrpAgreementCsv = `RRPONTSYD.csv`;
-const dataFilename = `RRP.json`
+// const rrpAwardsSource = `https://fred.stlouisfed.org/series/RRPONTSYAWARD`;
+// const rrpAgreementSource = `https://fred.stlouisfed.org/series/RRPONTSYD`;
+const rrpAwardsCsv = `./RRPONTSYAWARD.csv`;
+const rrpAgreementCsv = `./RRPONTSYD.csv`;
+const dataFilename = `../frontend/RRP.json`
 
 
 const main = async()=>{
-	//get the 2 pages (cron job)
-	//let [rrpAwardHtml, rrpAgreementHtml] = await Promise.all(fetchHTML(rrpAwardsPage), fetchHTML(rrpAgreementPage));
-	
-	//download the relative csv files
+	//download the relative csv files (cron job)
+	await Promise.all([dlRRAAwardsRate(rrpAwardsCsv), dlRRP(rrpAgreementCsv)]);
+
+	//wait a second for the files to be avaialble to io
+	waitTimer(2); 
 
 	//convert, merge, and sort the csv files
 	let rrpAwardsJson = csvToJson(rrpAwardsCsv);
@@ -26,5 +29,7 @@ const main = async()=>{
 	
 	//save the data locally for web upload
 	await saveDataToFile(dataFilename, sortedData);
+
+	console.log(`JSON data file saved to [${dataFilename}]`);
 };
 main();

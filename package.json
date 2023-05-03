@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "download": "node backend/index.js",
     "dev": "nodemon devserver.js"
   },
   "repository": {

@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const main = (csvfile) => {
 	if (!csvfile){ return null; }
-	let csvData = fs.readFileSync(`./${csvfile}`, 'utf8');
+	let csvData = fs.readFileSync(csvfile, 'utf8');
 
 	const lines = csvData.split('\n');
 	const headers = lines[0].split(',');
