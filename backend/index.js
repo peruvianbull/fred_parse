@@ -9,9 +9,9 @@ const saveDataToFile = require('./saveDataToFile');
 
 // const rrpAwardsSource = `https://fred.stlouisfed.org/series/RRPONTSYAWARD`;
 // const rrpAgreementSource = `https://fred.stlouisfed.org/series/RRPONTSYD`;
-const rrpAwardsCsv = `./RRPONTSYAWARD.csv`;
-const rrpAgreementCsv = `./RRPONTSYD.csv`;
-const dataFilename = `../frontend/RRP.json`
+const rrpAwardsCsv = `./backend/RRPONTSYAWARD.csv`;
+const rrpAgreementCsv = `./backend/RRPONTSYD.csv`;
+const dataFilename = `./frontend/RRP.json`
 
 
 const main = async()=>{
