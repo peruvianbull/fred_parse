@@ -104,11 +104,11 @@ const main = async()=>{
 									ticks: {
 											callback: function(value, index, values) {
 													if (value >= 1000000) {
-															value = '$' + (value / 1000000).toFixed(1) + 'b';
+															value = '$' + (value / 1000000).toFixed(1) + 't';
 													} else if (value >= 1000) {
-															value = '$' + (value / 1000).toFixed(1) + 'm';
+															value = '$' + (value / 1000).toFixed(1) + 'b';
 													} else {
-															value = '$' + value + 'k';
+															value = '$' + value + 'm';
 													}
 													return value;
 											}
