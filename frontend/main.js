@@ -14,7 +14,6 @@ const main = async()=>{
 		};
 	});
 	
-	// const dates = data.map(d => d.DATE);
 	const dates = newData.map(d => d.QUARTER);
 	const rrpointsyaward = newData.map(d => d.RRPONTSYAWARD);
 	const rrpointsyd = newData.map(d => d.RRPONTSYD);
@@ -78,64 +77,68 @@ const main = async()=>{
 	 fill: false,
 	 yAxisID: 'y2',
 	});
+
 	const config = {
-			type: 'line',
-			data: {
-			 labels: dates,
-			 datasets,
-			},
-			options: {
-					scales: {
-							y1: {
-									type: 'linear',
-									position: 'right',
-									beginAtZero: true,
-									grid: { drawOnChartArea: false },
-									ticks: {
-											callback: function(value, index, values) {
-													return value.toFixed(1) + '%';
-											}
-									}
-							},
-							y2: {
-									type: 'linear',
-									position: 'left',
-									beginAtZero: true,
-									ticks: {
-											callback: function(value, index, values) {
-													if (value >= 1000000) {
-															value = '$' + (value / 1000000).toFixed(1) + 't';
-													} else if (value >= 1000) {
-															value = '$' + (value / 1000).toFixed(1) + 'b';
-													} else {
-															value = '$' + value + 'm';
-													}
-													return value;
-											}
-									}
-							},
-					},
-					plugins:[
-						watermarkPlugin,
-						{ id:"zoom",
-						zoom: {
-							 zoom: {
-								 wheel: {
-									 enabled: true,
-								 },
-								 pinch: {
-									 enabled: true
-								 },
-								 mode: 'x',
-							 }
-						 }
+		type: 'line',
+		data: {
+			labels: dates,
+			datasets,
+		},
+		options: {
+			scales: {
+				y1: {
+					type: 'linear',
+					position: 'right',
+					beginAtZero: true,
+					grid: { drawOnChartArea: false },
+					ticks: {
+						callback: function(value, index, values) {
+							return value.toFixed(1) + '%';
 						}
-				 ]
+					}
+				},
+				y2: {
+					type: 'linear',
+					position: 'left',
+					beginAtZero: true,
+					ticks: {
+						callback: function(value, index, values) {
+							if (value >= 1000000) {
+								value = '$' + (value / 1000000).toFixed(1) + 't';
+							} else if (value >= 1000) {
+								value = '$' + (value / 1000).toFixed(1) + 'b';
+							} else {
+								value = '$' + value + 'm';
+							}
+							return value;
+						}
+					}
+				},
 			},
+			plugins: {
+				tooltip: false,
+				zoom: {
+					pan: {
+						enabled: true,
+						mode: 'x',
+						modifierKey: 'ctrl',
+					},
+					zoom: {
+						drag: {
+							enabled: true
+						},
+						mode: 'x',
+					},
+				}
+			},
+		}
 	};
 	
 	const ctx = document.getElementById('myChart').getContext('2d');
 	const myChart = new Chart(ctx, config);
-};
 
+	document.getElementById('resetZoomButton').addEventListener('click', () => {
+		myChart.resetZoom();
+});
+};
 main();
