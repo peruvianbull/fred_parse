@@ -1,0 +1,26 @@
+name: update RRP data
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: "Build & Run"
+        run: |
+          npm install
+          node backend/index.js
+          git status
+          git add ./frontend/RRP.json
+          git config --local user.email "workflow@cicd.io"
+          git config --local user.name "GitHub workflow"
+          git commit -m "repo data update `date '+%D'`"
+      - name: push back to repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
