@@ -1,0 +1,15 @@
+name: update RRP data
+on:
+  push:
+    branches:
+      - cicd
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Build & Run"
+        run: |
+          npm install
+          node backend/index.js
+          echo "hello.."
