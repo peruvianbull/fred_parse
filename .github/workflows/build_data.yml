@@ -12,9 +12,13 @@ jobs:
         uses: actions/checkout@v3
       - name: "Build & Run"
         run: |
-          ls -l
-          echo "hi..."
-          pwd
           npm install
           node backend/index.js
-          echo "hello.."
+          git add ./frontend/RRP.json]
+          git commit -m "repo data update `date '+%D'`"
+      - name: push back to repo
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
