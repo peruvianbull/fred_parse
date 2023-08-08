@@ -1,8 +1,7 @@
 name: update RRP data
 on:
-  push:
-    branches:
-      - cicd
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   build:
