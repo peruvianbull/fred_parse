@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: "Build & Run"
         run: |
+          ls .
+          pwd
           npm install
           node backend/index.js
           echo "hello.."
