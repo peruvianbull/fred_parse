@@ -13,6 +13,26 @@ yarn-error.log*
 
 # macOS system files
 .DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+._.DS_Store
+*.swp
+*.swo
+*~.nib
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
 # Build directory
 /dist
@@ -52,3 +72,24 @@ docker-compose.*
 
 # Docker containers
 *.tar
+
+# AWS credentials
+.aws/
+*.pem
+*.ppk
+*.sk
+
+# Sensitive data
+*.key
+*.cert
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# Temporary files
+*.tmp
+*.temp
+*.t
+temp/
+tmp/

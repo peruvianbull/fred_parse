@@ -116,7 +116,17 @@ const main = async()=>{
 				},
 			},
 			plugins: {
-				tooltip: false,
+				// tooltip: false,
+				tooltip: {
+					enabled: true,
+					mode: 'index',
+					intersect: false,
+					callbacks: {
+						title: function (tooltipItems, data) {},
+						label: function (tooltipItem, data) {},
+						afterLabel: function(tooltipItem, data) {}
+					}
+				},
 				zoom: {
 					pan: {
 						enabled: true,
