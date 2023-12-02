@@ -17,7 +17,7 @@ const dataFilename = `./frontend/RRP.json`
 const main = async()=>{
 	//download the relative csv files (cron job)
 	await Promise.all([dlRRAAwardsRate(rrpAwardsCsv), dlRRP(rrpAgreementCsv)]);
-
+	
 	//wait a second for the files to be avaialble to io
 	waitTimer(2); 
 
