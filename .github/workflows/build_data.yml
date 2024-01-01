@@ -20,6 +20,7 @@ jobs:
           git config --local user.email "workflow@cicd.io"
           git config --local user.name "GitHub workflow"
           git commit -m "repo data update `date '+%D'`"
+          exit 0
       - name: push back to repo
         uses: ad-m/github-push-action@master
         with:
