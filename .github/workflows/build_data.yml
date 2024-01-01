@@ -12,6 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: "Build & Run"
+        continue-on-error: true
         run: |
           npm install
           node backend/index.js
